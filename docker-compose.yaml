@@ -1,0 +1,31 @@
+version: '2'
+services:
+  cili-sousuo:
+    build: .
+    container_name: cili-sousuo
+    ports: 
+      - "5005:5000"
+      - "27017"
+    tty: true
+    stdin_open: true
+    working_dir: /app
+    volumes:
+      - "./:/app"
+  cili-sousuo-dbdata:
+    # network_mode: "host"
+    image: mysql:5.7
+    container_name: cili-sousuo-dbdata
+    environment:
+      MYSQL_ROOT_PASSWORD: "zhangshan"
+      MYSQL_USER: 'admin'
+      MYSQL_PASS: 'zhangshuan'
+    ports: 
+      - "3336:3306"
+      - "27017"
+    restart: always
+    volumes:
+      - "./db:/var/lib/mysql"
+      - "./conf/my.cnf:/etc/my.cnf"
+      # - "./init:/docker-entrypoint-initdb.d/"
+    tty: true
+    stdin_open: true  

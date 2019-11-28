@@ -1,0 +1,5 @@
+/db/*
+.email.json
+/app/uploads/*
+/logs/*
+app/__pycache__/*
